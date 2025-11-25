@@ -43,7 +43,7 @@ int main()
     {
         ptr = lister();
         printf("\nEnter what operation to perform from the below options");
-        printf("\n1.display\t2.solvforXNEWTRAP\t3.Edit\t4.SolveforXREGUFAL\t0.Exit");
+        printf("\n1.display\t2.solvfor_X_NEWTRAP\t3.Edit\t4.Solvefor_X_REGUFAL\t0.Exit");
         scanf("%d", &choice);
       while(choice!=0)
       {
@@ -396,6 +396,7 @@ int count=0;
 }
 float reg(node *ntraverser)
 {
+    float result=0;
     int success=1;
     float Xi=0,Xii=0,Xiii=0,exitcase=1,counter=0;
     float polval1=1,polval2=1,i=0;
@@ -502,8 +503,11 @@ float reg(node *ntraverser)
         }
     }
     }
+    result =vartraverser->IP;//got the root in an var which presists after the "func*" clean
     cleanA(varhead);
-    return vartraverser->IP;
+    return result;
+    /*cleanA(varhead); cant do this here as this cleans vartravrser but vwe need to return it's data member..
+    return vartraverser->IP;*/
     //MESS END
 }
 float polyvalue(float IP,node* ntraverser)
@@ -533,3 +537,24 @@ void cleanA(func* vartraverser)
     printf("\nCleaned the root LL");
 }
 //70 or such lines of code is just traversing make a funcction to traverse.
+
+//sol. take a function void* traverser(void*); to traverse any LL
+//add an static vlaue in the struct to set it to the size of the struct or can use polys ll to acces the size for the node only but then funcLL and polys LL size if unknown.
+//if static is a thing in c as c++ do also try using same thing in node itslf to sve its size with no need to have an attribute size in the polys.
+
+//In this commit i did following
+//--.fixed the cleaning issue of the vartraverser
+//--.added _ in the printf somewheare
+//--.thought of an solution to reduce the code size 25 nov 2-25
+
+/*
+static check to traverse
+void *traverser(void *traverse)
+{
+int choice=0;
+printf("ENter your choice as folllows");
+printf("");
+scanf("%d",&choice);
+}
+*/
+//underw=estimated scenerio a bit cant do this 70 line reduction in due time need more so lets procastinate. 
